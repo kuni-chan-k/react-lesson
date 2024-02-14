@@ -6,7 +6,7 @@ import LessonPage2 from './pages/LessonPage2';
 
 function App() {
   return (
-    <BrowserRouter basename="/react/">
+    <BrowserRouter basename="/react-lesson/">
       <Routes>
         <Route path="/" element={<TopPage />} />
         <Route path="lesson1" element={<LessonPage1 />} />

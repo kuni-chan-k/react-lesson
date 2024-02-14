@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kuni-chan-k.github.io/react/",
+  "homepage": "https://kuni-chan-k.github.io/react-lesson/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
