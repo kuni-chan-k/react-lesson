@@ -22,6 +22,9 @@ function Lesson3() {
   const [inputNewTask, setInputNewTask] = useState("");
   const [hasInputError, setHasInputError] = useState(false);
 
+  // タスク名の入力最大値
+  const MAXLENGTH = 1000;
+
   // モーダル関連
   const openTodoAddModal = useCallback(() => {
     setIsViewTodoAddModal(true);
@@ -46,16 +49,13 @@ function Lesson3() {
 
   // 入力関連
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 変換中でも入力を許可
-    if (e.target.value.length <= 100) {
+    if (e.target.value.length <= MAXLENGTH) {
       setInputNewTask(e.target.value);
     }
   };
   const handleCompositionEnd = (e: React.CompositionEvent<HTMLInputElement>) => {
-    // e.targetをHTMLInputElementとして扱う
     const target = e.target as HTMLInputElement;
-    // 変換終了時に文字数をチェックして超過していれば切り詰める
-    const trimmedValue = target.value.slice(0, 100);
+    const trimmedValue = target.value.slice(0, MAXLENGTH);
     setInputNewTask(trimmedValue);
   };
 
@@ -81,7 +81,9 @@ function Lesson3() {
             onChange={() => onToggle(task.id)}
             className="mr-4 size-5"
           />
-          <span className={task.isCompleted ? "line-through" : ""}>{task.name}</span>
+          <span className={task.isCompleted ? "line-through" : ""}>
+            {task.name}
+          </span>
         </div>
         <button
           onClick={() => onDelete(task.id)}
@@ -127,7 +129,6 @@ function Lesson3() {
           </button>
         </div>
       </div>
-
 
       {/* modal */}
       <div
