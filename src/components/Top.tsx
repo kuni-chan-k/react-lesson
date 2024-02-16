@@ -9,10 +9,13 @@ function Top() {
         </h1>
         <ul className='text-blue-500 underline'>
           <li>
-            <Link to="/lesson1">レッスン1 </Link>
+            <Link to="/lesson1">レッスン1 Hello World</Link>
           </li>
           <li>
-            <Link to="/lesson2">レッスン2 </Link>
+            <Link to="/lesson2">レッスン2 Counter</Link>
+          </li>
+          <li>
+            <Link to="/lesson3">レッスン3 Todo</Link>
           </li>
         </ul>
       </div>
