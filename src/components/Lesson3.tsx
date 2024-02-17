@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 // レッスン3 Todo
 // https://qiita.com/kmmch/items/107bfeb1d316e4702244
@@ -142,6 +142,20 @@ function Lesson3() {
       </div>
     );
   };
+
+  useEffect(() => {
+    // モーダル表示時､エスケープキー押下でモーダルを閉じる
+    if (!isViewTodoAddModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeTodoAddModal();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [closeTodoAddModal, isViewTodoAddModal]);
 
   return (
     <div className="h-screen w-full bg-gray-50">
