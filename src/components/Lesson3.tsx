@@ -197,7 +197,7 @@ function Lesson3() {
         className="fixed inset-0 z-50 flex h-screen w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-400/50 data-[view=false]:hidden"
         onClick={handleModalOutsideClick}
       >
-        <div className={`${isViewTodoAddModal ? 'animate-fadeIn' : 'animate-fadeOut'} mx-auto w-full max-w-xl rounded-lg bg-white shadow-lg`}>
+        <div className={`${isViewTodoAddModal ? 'animate-fadeIn' : 'animate-fadeOut'} mx-4 w-full max-w-xl rounded-lg bg-white shadow-lg`}>
           {/* modal header */}
           <div className="flex items-center justify-between rounded-t p-4">
             <h3 className="text-xl font-semibold">
