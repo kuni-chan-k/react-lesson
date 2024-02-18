@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Top() {
   return (
     <div className="grid h-screen w-full content-baseline bg-blue-100">
-      <div className="mx-auto mt-10 grid w-4/5 gap-8 rounded-2xl bg-white p-8 drop-shadow-md">
+      <div className="w-5/6 mx-auto mt-10 grid gap-8 rounded-2xl bg-white p-6 drop-shadow-md md:w-4/5 md:p-8">
         <h1 className="text-3xl font-bold">
           React 100本ノック
         </h1>

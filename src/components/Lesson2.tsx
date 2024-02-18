@@ -17,7 +17,7 @@ function Lesson2() {
   }, [count]);
 
   return (
-    <div className="grid h-screen w-full content-center bg-blue-100">
+    <div className="grid h-screen w-full content-center overflow-hidden bg-blue-100">
       <div className="mx-auto grid gap-16 rounded-2xl bg-white p-8 drop-shadow-md">
         <h1 className="text-center text-xl font-bold text-zinc-400">
           React Counter
