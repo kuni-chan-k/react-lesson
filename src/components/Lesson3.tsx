@@ -157,6 +157,18 @@ function Lesson3() {
     };
   }, [closeTodoAddModal, isViewTodoAddModal]);
 
+  useEffect(() => {
+    // モーダル表示､スクロールロック
+    if (isViewTodoAddModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isViewTodoAddModal]);
+
   return (
     <div className="h-screen w-full bg-gray-50">
       <div className="bg-teal-600">
