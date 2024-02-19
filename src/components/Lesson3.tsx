@@ -135,10 +135,10 @@ function Lesson3() {
         ref={setNodeRef}
         style={style}
         {...attributes}
-        className="mx-auto flex w-full max-w-screen-md cursor-default items-center justify-between rounded-2xl bg-white p-6 drop-shadow-md md:p-8"
+        className="mx-auto flex w-full max-w-screen-md cursor-default items-center justify-between overflow-hidden rounded-2xl bg-white p-4 drop-shadow-md md:p-8"
       >
-        <div className="flex items-center text-xl">
-          <button {...listeners} className="mr-2 cursor-pointer p-2">
+        <div className="mr-4 flex items-center overflow-hidden">
+          <button {...listeners} className="shrink-0 cursor-pointer p-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="size-8">
               <path d="M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z" />
             </svg>
@@ -148,18 +148,19 @@ function Lesson3() {
             id={`task-${task.id}`}
             checked={task.isCompleted}
             onChange={() => onToggle(task.id)}
-            className="mr-4 size-5"
+            className="mr-4 size-5 shrink-0"
           />
-          <span className={task.isCompleted ? "line-through" : ""}>
+          <p className={`grow break-all text-xl ${task.isCompleted ? "line-through" : ""}`}>
             {task.name}
-          </span>
+          </p>
         </div>
-        <button onClick={() => onDelete(task.id)}>
+        <button onClick={() => onDelete(task.id)} className="shrink-0 mr-2">
           <svg className="size-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
           </svg>
         </button>
       </div>
+
     );
   };
 
@@ -197,7 +198,7 @@ function Lesson3() {
         </h1>
       </div>
 
-      <div className="mx-auto grid gap-4 p-8">
+      <div className="mx-auto grid gap-4 p-4 md:p-8">
         {tasks.length === 0 ? (
           <p className="text-center text-xl font-bold">
             Todoは登録されていません
