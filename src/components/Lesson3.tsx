@@ -154,7 +154,7 @@ function Lesson3() {
             {task.name}
           </p>
         </div>
-        <button onClick={() => onDelete(task.id)} className="shrink-0 mr-2">
+        <button onClick={() => onDelete(task.id)} className="mr-2 shrink-0">
           <svg className="size-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
           </svg>
