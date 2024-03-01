@@ -15,6 +15,7 @@ const Lesson4: React.FC = () => {
   const requestRef = useRef<number | null>(null); // アニメーションフレームID
   const startTimeRef = useRef<number | null>(null); // タイマー開始時刻
   const elapsedTimeRef = useRef<number>(0); // 一時停止までの経過時間
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // プログレスバーの更新とタイマーのカウントダウンを行う関数
   const updateProgressAndTime = useCallback((now: number) => {
@@ -31,28 +32,29 @@ const Lesson4: React.FC = () => {
       requestRef.current = requestAnimationFrame(updateProgressAndTime);
     } else {
       setIsCounting(false);
-      const audio = new Audio(Sound);
-      audio.play()
+      // タイマーが0に達したらオーディオを再生
+      if (audioRef.current) {
+        audioRef.current.play().catch(err => console.error("Audio play failed:", err));
+      }
     }
   }, []);
 
-  useEffect(() => {
-    if (isCounting) {
-      requestRef.current = requestAnimationFrame(updateProgressAndTime);
-    } else {
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
+  // オーディオの準備（ユーザーのインタラクションに基づく）
+  const prepareAudio = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(Sound);
+      audioRef.current.play().then(() => {
+        audioRef.current!.pause();
+        audioRef.current!.currentTime = 0;
+      }).catch(err => console.error("Audio preparation failed:", err));
     }
-    return () => {
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
-    };
-  }, [updateProgressAndTime, isCounting]);
+  };
 
   const startClick = (): void => {
     if (!isCounting) {
+      // オーディオの準備を呼び出し
+      prepareAudio();
+
       setIsCounting(true);
       // ここで経過時間を考慮してstartTimeRef.currentを更新
       if (startTimeRef.current === null) {
@@ -87,9 +89,24 @@ const Lesson4: React.FC = () => {
     startTimeRef.current = null;
   };
 
+  useEffect(() => {
+    if (isCounting) {
+      requestRef.current = requestAnimationFrame(updateProgressAndTime);
+    } else {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    }
+    return () => {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+  }, [updateProgressAndTime, isCounting]);
+
   return (
     <div className="grid h-screen w-full content-center bg-blue-100">
-      <div className="mx-auto grid gap-16 rounded-2xl bg-white p-8 drop-shadow-md">
+      <div className="mx-auto mt-10 grid gap-8 rounded-2xl bg-white p-6 drop-shadow-md md:p-8">
         <h1 className="text-center text-xl font-bold text-zinc-400">
           React Timer
         </h1>
@@ -111,7 +128,7 @@ const Lesson4: React.FC = () => {
             {countTime}
           </div>
         </div>
-        <div className='flex justify-center gap-6'>
+        <div className='flex justify-center gap-3'>
           <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" onClick={startClick} disabled={isCounting}>スタート</button>
           <button className="rounded bg-yellow-500 px-4 py-2 font-bold text-white hover:bg-yellow-700" onClick={pauseClick} disabled={!isCounting}>一時停止</button>
           <button className="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700" onClick={resetClick}>リセット</button>
