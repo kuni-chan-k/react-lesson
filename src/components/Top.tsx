@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
 
-function Top() {
+const Top = () => {
+  const lessonData = [
+    { title: "レッスン1 Hello World", path: "lesson1" },
+    { title: "レッスン2 Counter", path: "lesson2" },
+    { title: "レッスン3 Todo", path: "lesson3" },
+    { title: "レッスン4 Timer", path: "lesson4" },
+  ]
+
   return (
     <div className="grid h-screen w-full content-baseline bg-blue-100">
       <div className="mx-auto mt-10 grid w-5/6 gap-8 rounded-2xl bg-white p-6 drop-shadow-md md:w-4/5 md:p-8">
@@ -8,15 +15,11 @@ function Top() {
           React 100本ノック
         </h1>
         <ul className='text-blue-500 underline'>
-          <li>
-            <Link to="/lesson1">レッスン1 Hello World</Link>
-          </li>
-          <li>
-            <Link to="/lesson2">レッスン2 Counter</Link>
-          </li>
-          <li>
-            <Link to="/lesson3">レッスン3 Todo</Link>
-          </li>
+          {
+            lessonData.map((lesson) =>
+              <li><Link to={lesson.path}>{lesson.title}</Link></li>
+            )
+          }
         </ul>
       </div>
     </div>

@@ -5,8 +5,8 @@ import { arrayMove } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
 // レッスン3 Todo
-// https://qiita.com/kmmch/items/107bfeb1d316e4702244
-function Lesson3() {
+// https://qiita.com/Sicut_study/items/5dec3c42c8f3c90f0487
+const Lesson3 = () => {
   type Task = {
     id: number;
     name: string;

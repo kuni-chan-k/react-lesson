@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 
 // レッスン2 Counter
 // https://qiita.com/Sicut_study/items/82059f9cbb5b2996e5b3
-function Lesson2() {
+const Lesson2 = () => {
   const [count, setCount] = useState(0);
 
   const increaseButtonClick = useCallback(() => {
