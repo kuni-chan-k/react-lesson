@@ -1,7 +1,11 @@
 import Top from '@/components/Top';
+import Head from '@/components/templates/Head';
 
 const TopPage = () => (
-  <Top />
+  <>
+    <Head />
+    <Top />
+  </>
 );
 
 export default TopPage;
