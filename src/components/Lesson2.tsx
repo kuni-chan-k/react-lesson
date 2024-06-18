@@ -6,7 +6,7 @@ const Lesson2 = () => {
   const [count, setCount] = useState(0);
 
   const increaseButtonClick = useCallback(() => {
-    if (count < 101) {
+    if (count < 100) {
       setCount(count + 1)
     }
   }, [count]);
